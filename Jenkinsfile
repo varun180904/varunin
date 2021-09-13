@@ -2,24 +2,24 @@
 
 node('master') 
 {
-    stage('Continuous Download_loans') 
+    stage('Continuous Download_master') 
 	{
    		git 'https://github.com/varun180904/varunin.git'
 	}
-    stage('Continuous Build_loans') 
+    stage('Continuous Build_master') 
 	{
     		sh label: '', script: 'mvn package'
 	}
-	stage('Continuous Deployment_loans') 
+	stage('Continuous Deployment_master') 
    	{
-		sh label: '', script: 'scp  /home/ubuntu/.jenkins/workspace/Job2_main/webapp/target/webapp.war  ubuntu@172.31.34.181:/var/lib/tomcat8/webapps/qaenv.war'
+		sh label: '', script: 'scp  /home/ubuntu/.jenkins/workspace/Job2_master/webapp/target/webapp.war  ubuntu@172.31.34.181:/var/lib/tomcat8/webapps/qaenv.war'
 	}
-	stage('Continuous Testing_loans') 
+	stage('Continuous Testing_master') 
   	{
 		sh label: '', script: 'echo "Testing Passed"'
 	}
-	stage('Continuous Delivery_loans') 
+	stage('Continuous Delivery_master') 
 	 {
-		sh label: '', script: 'scp  /home/ubuntu/.jenkins/workspace/Job2_main/webapp/target/webapp.war  ubuntu@172.31.36.144:/var/lib/tomcat8/webapps/prodenv.war'
+		sh label: '', script: 'scp  /home/ubuntu/.jenkins/workspace/Job2_master/webapp/target/webapp.war  ubuntu@172.31.36.144:/var/lib/tomcat8/webapps/prodenv.war'
 	}
 }
